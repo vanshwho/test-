@@ -3,81 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hey Kriti 🚀</title>
+    <title>Kriti & Vansh Podcast</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
             font-family: 'Arial', sans-serif;
-            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRr55SpfYEsrBX9hADFxyYYquTfkc_kso30S05TEI6rsHv715aTiNaZMo&s=10') center/cover no-repeat; /* Minimal Seedhe Maut art */
+            color: #333;
+        }
+        /* Animated Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            background-size: 300% 300%;
+            animation: gradient 6s ease infinite;
+            z-index: -1;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .photo-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: white;
+            margin: 3rem auto;
+            gap: 2rem;
         }
-        .container {
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 12px;
-            padding: 20px 30px;
-            width: 90%;
-            max-width: 500px;
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .name {
             text-align: center;
-            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.7);
-        }       h1 {
-            font-size: 2.5rem;
-            color: #ffcc00;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 8px #000;
-        }
-        p {
-            font-size: 1rem;
-            margin: 15px 0;
-            color: #dcdcdc;
-        }
-        button {
-            background: #ffcc00;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-size: 1rem;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
+            color: #555;
+        }
+        .content {
+            text-align: center;
+            padding: 2rem;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        .content button {
+            background: #ff6f91;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 1rem;
+            margin-top: 1rem;
         }
-        button:hover {
-            background: #ffd633;
-            transform: scale(1.05);
+        .content button:hover {
+            background: #ff4f73;
         }
-        button:active {
-            transform: scale(1);
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
-        .signature {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            color: #888;
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: url('https://via.placeholder.com/500x300') center/cover no-repeat;
+            width: 80%;
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+        }
+        .modal-content h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .modal-content audio {
+            width: 100%;
+            margin-top: 1rem;
+            outline: none;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hey Kriti! ✨</h1>
-        <p>
-            Just like Seedhe Maut drops bars, I thought I’d drop something cool for you.  
-            feels finer when the vibe matches, don’t you think?
-        </p>
-        <button onclick="showMessage()">Click Me 🔥</button>
-        <p class="signature">
-            — Someone who vibes with DHH and good convos.
-        </p>
+    <header>
+        <h1>Kriti & Vansh Podcast</h1>
+        <p>Deep talks, fun stories, and endless vibes!</p>
+    </header>
+    <div class="photo-container">
+        <div>
+            <div class="photo">
+                <img src="kriti.jpg" alt="Kriti's Photo">
+            </div>
+            <div class="name">Kriti</div>
+        </div>
+        <div>
+            <div class="photo">
+                <img src="IMG_5497.PNG" alt="Vansh's Photo">
+            </div>
+            <div class="name">Vansh</div>
+        </div>
+    </div>
+    <div class="content">
+        <h2>Latest Episodes</h2>
+        <p>Stay tuned for exciting conversations and exclusive stories on our podcast.</p>
+        <button id="open-modal">Listen Now</button>
+    </div>
+    <footer>
+        <p>&copy; 2025 Kriti & Vansh Podcast. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal Popup -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <h2>Episode 1: Asking a foodie guy about dieting!</h2>
+            <audio controls>
+                <source src="test.mp4" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
     </div>
 
     <script>
-        function showMessage() {
-            alert("Glad you clicked! Let’s keep the good vibes rolling. 🚀");
-        }
+        // Modal functionality
+        const modal = document.getElementById('modal');
+        const openModal = document.getElementById('open-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        openModal.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
