@@ -34,6 +34,26 @@
             color: white;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
         }
+        .audio-visualizer {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .bar {
+            width: 5px;
+            height: 20px;
+            background: white;
+            animation: bounce 0.5s infinite;
+        }
+        .bar:nth-child(2) { animation-delay: 0.1s; }
+        .bar:nth-child(3) { animation-delay: 0.2s; }
+        .bar:nth-child(4) { animation-delay: 0.3s; }
+        .bar:nth-child(5) { animation-delay: 0.4s; }
+        @keyframes bounce {
+            0%, 100% { transform: scaleY(0.5); }
+            50% { transform: scaleY(1); }
+        }
         .photo-container {
             display: flex;
             justify-content: center;
@@ -100,8 +120,8 @@
             align-items: center;
         }
         .modal-content {
-            background: url('https://via.placeholder.com/500x300') center/cover no-repeat;
-            width: 80%;
+            background: #fff;
+            width: 90%;
             max-width: 500px;
             padding: 2rem;
             border-radius: 10px;
@@ -110,8 +130,8 @@
             position: relative;
         }
         .modal-content h2 {
-            color: white;
             margin-bottom: 1rem;
+            color: #333;
         }
         .modal-content audio {
             width: 100%;
@@ -122,7 +142,7 @@
             position: absolute;
             top: 10px;
             right: 20px;
-            color: white;
+            color: #333;
             font-size: 1.5rem;
             cursor: pointer;
         }
@@ -132,6 +152,13 @@
     <header>
         <h1>Kriti & Vansh Podcast</h1>
         <p>Deep talks, fun stories, and endless vibes!</p>
+        <div class="audio-visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
     </header>
     <div class="photo-container">
         <div>
@@ -160,21 +187,32 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" id="close-modal">&times;</span>
-            <h2>Episode 1: Asking a foodie guy about dieting!</h2>
-            <audio controls>
-                <source src="test.mp4" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+            <div id="episodes"></div>
         </div>
     </div>
 
     <script>
-        // Modal functionality
+        const episodes = [
+            { title: "Episode 1:Intro Hola!", src: "intro.mp3" },
+            { title: "Episode 2: Asking a foodie guy about dieting!", src: "test.mp4" },
+            { title: "Episode 3: Always undersestimate herself &  encourage others", src: "ep3.mp3" },
+            { title: "Episode 4: Fav ajj pata hai kya hua? ", src: "ep4.mp3" },
+            { title: "Episode 5: HIP HOP shit!!", src: "ep5.mp3" }
+        ];
+
         const modal = document.getElementById('modal');
         const openModal = document.getElementById('open-modal');
         const closeModal = document.getElementById('close-modal');
+        const episodesContainer = document.getElementById('episodes');
 
         openModal.addEventListener('click', () => {
+            episodesContainer.innerHTML = episodes.map(episode => `
+                <h2>${episode.title}</h2>
+                <audio controls>
+                    <source src="${episode.src}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            `).join('');
             modal.style.display = 'flex';
         });
 
